@@ -1,5 +1,5 @@
 body {
-    background-color: hsl(13, 31%, 94%);
+    background-color: hsl(20, 50%, 98%);
     margin-left: 50px;
 }
 
@@ -11,18 +11,22 @@ figure {
 figcaption.caption {
     width: 170px;
     height: 40px;
-
     position: absolute;
     bottom: -16px;         /* adjust how high it sits */
     left: 50%;
     transform: translateX(-50%);
-  
-    
     background-color: rgb(255, 255, 255);
     text-align: center;
     line-height: 35px;  /* same as height */
     border: 1px solid black;
     border-radius: 20px;
+}
+
+figcaption.caption::before {
+  content: url("./assets/images/icon-add-to-cart.svg");
+  display: inline-block;
+  vertical-align: sub;  /* aligns with text */
+  
 }
 
 .product-image {
@@ -54,15 +58,47 @@ section > div {
 }
 
 section .text {
-    margin-top: 20px;
+    margin-top: 35px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
 }
 
+.menu-item-category {
+    font-size: 14px;
+    color: hsl(12, 20%, 44%);
+}
+
+
+.menu-item-name {
+
+}
+
+.menu-item-price {
+    color: hsl(14, 86%, 42%);
+}
+
+
+
+
+
+
+
+
 aside {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 50px;     /* distance from top of viewport */
+    right: 50px;
+    padding: 20px;
+    border-radius: 8px;
     background-color: white;
 }
+
+aside h1 {
+    color: hsl(14, 86%, 42%);
+}
+
+aside figure {
+   text-align: center;
+}
+
