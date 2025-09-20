@@ -29,6 +29,7 @@ figcaption.caption::before {
   
 }
 
+
 .product-image {
     width: 300px;
     height: auto;
@@ -70,22 +71,13 @@ section .text {
 }
 
 
-.menu-item-name {
-
-}
-
 .menu-item-price {
     color: hsl(14, 86%, 42%);
 }
 
 
-
-
-
-
-
-
 aside {
+  width: 240px;
     position: fixed;
     top: 50px;     /* distance from top of viewport */
     right: 50px;
@@ -96,9 +88,107 @@ aside {
 
 aside h1 {
     color: hsl(14, 86%, 42%);
+    margin-top: 0px;
 }
 
 aside figure {
    text-align: center;
 }
 
+
+.quantity-selector {
+  display: flex; /* Aligns children in a row */
+  align-items: center; /* Vertically centers items */
+  justify-content: space-between;
+  width: 170px;
+  height: 40px;
+  background-color: #d65123;
+  border-radius: 25px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.quantity-selector .minus,
+.quantity-selector .plus {
+  border: none;
+  background: none;   /* Transparent background */
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;      /* Center the symbol inside */
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-selector .minus:hover,
+.quantity-selector .plus:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+}
+
+.quantity-selector .number {
+  font-size: 20px;
+  user-select: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.cart-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.item-name {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+
+.item-qty-price {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center them vertically */
+    gap: 12px; /* Add space between the quantity, price, and subtotal */
+}
+
+.item-qty {
+    color: #c44f36; /* Your accent color for the quantity */
+    font-weight: bold; /* Keep it bold */
+}
+
+.item-price {
+    color: #8c8c8c; /* Your secondary color for the price and subtotal */
+}
+
+.item-subtotal {
+    color: hsl(12, 20%, 44%); 
+    font-weight: bold;
+}
+
+
+
+.cart-total {
+  margin-top: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between; /* pushes label left and amount right */
+}
+
+.total-label {
+  color: #444;
+}
+
+.total-amount {
+  color: #008000; /* green */
+  font-size: 1.2em;
+}
