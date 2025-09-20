@@ -48,6 +48,11 @@ figcaption.caption.active::before {
 
 }
 
+.product-image.selected {
+    border: 2px solid #d65123;
+    border-radius: 8px; /* optional */
+}
+
 section {
     width: 69vw;
     min-width: 920px;
@@ -188,14 +193,28 @@ aside figure {
   font-size: 1.2em;
 }
 
+.my-custom-icon {
+  color: rgb(197, 2, 2);
+}
 
+.carbon-span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 6px;
+  background-color: hsl(20, 50%, 98%);
+}
 
-
-
-
-
-
-
-
-
-
+.confirm-order-btn {
+  width: 240px;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  background-color: #d65123;
+  margin-top: 20px;
+  border: none;
+  border-radius: 20px;
+}

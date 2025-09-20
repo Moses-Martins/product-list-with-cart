@@ -15,44 +15,51 @@ document.querySelectorAll(".quantity-selector").forEach(quantitySelector => {
     const name = product.dataset.name || "Unknown";
     const price = parseFloat(product.dataset.price) || 0;
 
-    let count = 0;
+    // initialize
+    product.dataset.count = 0;
 
     function updateCount(newCount) {
-        count = newCount;
-        numberSpan.textContent = count;
-        syncCart(id, name, price, count);
+        product.dataset.count = newCount; // store in DOM
+        numberSpan.textContent = newCount;
+        syncCart(id, name, price, newCount);
 
-        if (count === 0) {
+        const productImage = product.querySelector(".product-image");
+        if (newCount > 0) {
+            productImage.classList.add("selected");
+        } else {
             // Revert to default "Add to cart"
             figcaption.classList.remove("active");
             addLabel.style.display = "inline";
             quantitySelector.style.display = "none";
+            productImage.classList.remove("selected");
         }
     }
 
     // Clicking the figcaption to add first item
     figcaption.addEventListener("click", e => {
-        // Ignore clicks on plus/minus
         if (e.target === plusBtn || e.target === minusBtn) return;
 
-        if (count === 0) {
+        const current = parseInt(product.dataset.count) || 0;
+        if (current === 0) {
             figcaption.classList.add("active");
             addLabel.style.display = "none";
             quantitySelector.style.display = "flex";
-            updateCount(1); // first click adds 1
+            updateCount(1);
         }
     });
 
     // Minus button
     minusBtn.addEventListener("click", e => {
         e.stopPropagation();
-        if (count > 0) updateCount(count - 1);
+        const current = parseInt(product.dataset.count) || 0;
+        if (current > 0) updateCount(current - 1);
     });
 
     // Plus button
     plusBtn.addEventListener("click", e => {
         e.stopPropagation();
-        updateCount(count + 1);
+        const current = parseInt(product.dataset.count) || 0;
+        updateCount(current + 1);
     });
 });
 
@@ -94,12 +101,14 @@ function updateCart() {
         emptyFigure.appendChild(emptyCaption);
 
         container.appendChild(emptyFigure);
-        return;
+        return; // ⛔ stop here if empty
     }
 
+    // If cart has items:
     cart.forEach(i => {
         const div = document.createElement("div");
         div.className = "cart-item";
+        div.dataset.id = i.id;
 
         const nameLine = document.createElement("div");
         nameLine.className = "item-name";
@@ -127,11 +136,45 @@ function updateCart() {
         div.appendChild(nameLine);
         div.appendChild(qtyLine);
 
+        // Cancel icon
+        const cancelIcon = document.createElement("i");
+        cancelIcon.className = "bi bi-x-circle-fill my-custom-icon";
+        cancelIcon.style.cursor = "pointer";
+        cancelIcon.style.position = "absolute";
+        cancelIcon.style.right = "10px";
+        cancelIcon.style.top = "50%";
+        cancelIcon.style.transform = "translateY(-50%)";
+
+        cancelIcon.addEventListener("click", () => {
+            cart = cart.filter(item => item.id !== i.id);
+            updateCart();
+
+            const product = document.querySelector(`.product[data-id='${i.id}']`);
+            if (product) {
+                const figcaption = product.querySelector("figcaption.caption");
+                const addLabel = figcaption.querySelector(".add-label");
+                const quantitySelector = figcaption.querySelector(".quantity-selector");
+                const numberSpan = quantitySelector.querySelector(".number");
+                const productImage = product.querySelector(".product-image");
+
+                figcaption.classList.remove("active");
+                addLabel.style.display = "inline";
+                quantitySelector.style.display = "none";
+                numberSpan.textContent = "0";
+                productImage.classList.remove("selected");
+                product.dataset.count = 0;
+            }
+        });
+
+        div.style.position = "relative";
+        div.appendChild(cancelIcon);
+
         container.appendChild(div);
 
         total += i.price * i.quantity;
     });
 
+    // --- Order Total ---
     const totalDiv = document.createElement("div");
     totalDiv.className = "cart-total";
     totalDiv.style.marginTop = "10px";
@@ -148,4 +191,21 @@ function updateCart() {
     totalDiv.appendChild(amountSpan);
 
     container.appendChild(totalDiv);
+
+    // --- Carbon neutral + Confirm Order ---
+    const footerDiv = document.createElement("div");
+    footerDiv.className = "cart-footer";
+    footerDiv.style.marginTop = "15px";
+
+    footerDiv.innerHTML = `
+        <div class="carbon-span">
+            <img src="./assets/images/icon-carbon-neutral.svg" alt="carbon neutral" />
+            <span>This is a <strong>carbon-neutral</strong> delivery</span>
+        </div>
+        <button class="confirm-order-btn">
+            Confirm Order
+        </button>
+    `;
+
+    container.appendChild(footerDiv);
 }
