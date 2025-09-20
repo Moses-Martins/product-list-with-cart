@@ -1,34 +1,62 @@
 let cart = [];
 
-// Attach listeners to ALL products
-document.querySelectorAll(".product").forEach(product => {
-    const minusBtn = product.querySelector(".minus");
-    const plusBtn = product.querySelector(".plus");
-    const numberSpan = product.querySelector(".number");
+// Attach listeners to ALL quantity selectors
+document.querySelectorAll(".quantity-selector").forEach(quantitySelector => {
+    const minusBtn = quantitySelector.querySelector(".minus");
+    const plusBtn = quantitySelector.querySelector(".plus");
+    const numberSpan = quantitySelector.querySelector(".number");
 
-    let count = parseInt(numberSpan.textContent);
-    const id = parseInt(product.dataset.id);
-    const name = product.dataset.name;
-    const price = parseFloat(product.dataset.price);
+    const figcaption = quantitySelector.closest("figcaption.caption");
+    const addLabel = figcaption.querySelector(".add-label");
+    const product = figcaption.closest(".product");
 
-    // Decrease
-    minusBtn.addEventListener("click", () => {
-        if (count > 0) {
-            count--;
-            numberSpan.textContent = count;
-            syncCart(id, name, price, count);
+    // Read product info from parent
+    const id = parseInt(product.dataset.id) || 0;
+    const name = product.dataset.name || "Unknown";
+    const price = parseFloat(product.dataset.price) || 0;
+
+    let count = 0;
+
+    function updateCount(newCount) {
+        count = newCount;
+        numberSpan.textContent = count;
+        syncCart(id, name, price, count);
+
+        if (count === 0) {
+            // Revert to default "Add to cart"
+            figcaption.classList.remove("active");
+            addLabel.style.display = "inline";
+            quantitySelector.style.display = "none";
+        }
+    }
+
+    // Clicking the figcaption to add first item
+    figcaption.addEventListener("click", e => {
+        // Ignore clicks on plus/minus
+        if (e.target === plusBtn || e.target === minusBtn) return;
+
+        if (count === 0) {
+            figcaption.classList.add("active");
+            addLabel.style.display = "none";
+            quantitySelector.style.display = "flex";
+            updateCount(1); // first click adds 1
         }
     });
 
-    // Increase
-    plusBtn.addEventListener("click", () => {
-        count++;
-        numberSpan.textContent = count;
-        syncCart(id, name, price, count);
+    // Minus button
+    minusBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        if (count > 0) updateCount(count - 1);
+    });
+
+    // Plus button
+    plusBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        updateCount(count + 1);
     });
 });
 
-// Sync cart with quantity
+// --- Sync cart logic remains the same ---
 function syncCart(id, name, price, qty) {
     const item = cart.find(i => i.id === id);
 
@@ -44,23 +72,21 @@ function syncCart(id, name, price, qty) {
 
 function updateCart() {
     const count = cart.reduce((t, i) => t + i.quantity, 0);
-    document.getElementById('cart-count').textContent = `Your Cart (${count})`;
+    document.getElementById("cart-count").textContent = `Your Cart (${count})`;
 
-    const container = document.getElementById('cart-items');
-    container.innerHTML = ''; // clear current contents
+    const container = document.getElementById("cart-items");
+    container.innerHTML = ""; // clear
 
     let total = 0;
 
     if (cart.length === 0) {
-        // Restore default empty cart view
-        const emptyFigure = document.createElement('figure');
-
-        const emptyImg = document.createElement('img');
+        const emptyFigure = document.createElement("figure");
+        const emptyImg = document.createElement("img");
         emptyImg.src = "./assets/images/illustration-empty-cart.svg";
         emptyImg.alt = "Empty Cart";
 
-        const emptyCaption = document.createElement('figcaption');
-        const emptyText = document.createElement('span');
+        const emptyCaption = document.createElement("figcaption");
+        const emptyText = document.createElement("span");
         emptyText.textContent = "Your added items will appear here";
 
         emptyCaption.appendChild(emptyText);
@@ -68,33 +94,30 @@ function updateCart() {
         emptyFigure.appendChild(emptyCaption);
 
         container.appendChild(emptyFigure);
-        return; // stop here
+        return;
     }
 
-    // Render items if cart not empty
     cart.forEach(i => {
-        const div = document.createElement('div');
-        div.className = 'cart-item';
+        const div = document.createElement("div");
+        div.className = "cart-item";
 
-        // Line 1: Item name
-        const nameLine = document.createElement('div');
-        nameLine.className = 'item-name';
+        const nameLine = document.createElement("div");
+        nameLine.className = "item-name";
         nameLine.textContent = i.name;
 
-        // Line 2: Quantity × unit price + Subtotal (all in same row)
-        const qtyLine = document.createElement('div');
-        qtyLine.className = 'item-qty-price';
+        const qtyLine = document.createElement("div");
+        qtyLine.className = "item-qty-price";
 
-        const qtySpan = document.createElement('span');
-        qtySpan.className = 'item-qty';
+        const qtySpan = document.createElement("span");
+        qtySpan.className = "item-qty";
         qtySpan.textContent = `${i.quantity}x`;
 
-        const priceSpan = document.createElement('span');
-        priceSpan.className = 'item-price';
+        const priceSpan = document.createElement("span");
+        priceSpan.className = "item-price";
         priceSpan.textContent = `@$${i.price.toFixed(2)}`;
 
-        const subtotalSpan = document.createElement('span');
-        subtotalSpan.className = 'item-subtotal';
+        const subtotalSpan = document.createElement("span");
+        subtotalSpan.className = "item-subtotal";
         subtotalSpan.textContent = `$${(i.price * i.quantity).toFixed(2)}`;
 
         qtyLine.appendChild(qtySpan);
@@ -109,17 +132,16 @@ function updateCart() {
         total += i.price * i.quantity;
     });
 
-    // Add order total row
-    const totalDiv = document.createElement('div');
-    totalDiv.className = 'cart-total';
+    const totalDiv = document.createElement("div");
+    totalDiv.className = "cart-total";
     totalDiv.style.marginTop = "10px";
 
-    const labelSpan = document.createElement('span');
-    labelSpan.className = 'total-label';
+    const labelSpan = document.createElement("span");
+    labelSpan.className = "total-label";
     labelSpan.textContent = "Order Total:";
 
-    const amountSpan = document.createElement('span');
-    amountSpan.className = 'total-amount';
+    const amountSpan = document.createElement("span");
+    amountSpan.className = "total-amount";
     amountSpan.textContent = `$${total.toFixed(2)}`;
 
     totalDiv.appendChild(labelSpan);
