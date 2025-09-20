@@ -8,26 +8,37 @@ figure {
     margin: auto 0
 }
 
+
 figcaption.caption {
     width: 170px;
     height: 40px;
     position: absolute;
-    bottom: -16px;         /* adjust how high it sits */
+    bottom: -16px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    line-height: 35px;  /* same as height */
+    background-color: #fff;
     border: 1px solid black;
     border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ✅ vertical centering */
+    cursor: pointer;
+    box-sizing: border-box;
 }
+
 
 figcaption.caption::before {
   content: url("./assets/images/icon-add-to-cart.svg");
   display: inline-block;
-  vertical-align: sub;  /* aligns with text */
-  
+  margin-right: 5px; /* Add space between icon and text */
+  margin-top: 5px;
 }
+
+figcaption.caption.active::before {
+  content: none; /* removes the icon once active */
+}
+
 
 
 .product-image {
@@ -75,7 +86,6 @@ section .text {
     color: hsl(14, 86%, 42%);
 }
 
-
 aside {
   width: 240px;
     position: fixed;
@@ -95,13 +105,12 @@ aside figure {
    text-align: center;
 }
 
-
 .quantity-selector {
   display: flex; /* Aligns children in a row */
   align-items: center; /* Vertically centers items */
   justify-content: space-between;
-  width: 170px;
-  height: 40px;
+  width: 168px;
+  height: 38px;
   background-color: #d65123;
   border-radius: 25px;
   box-sizing: border-box;
@@ -133,17 +142,6 @@ aside figure {
   user-select: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .cart-item {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
@@ -153,7 +151,6 @@ aside figure {
   text-align: left;
   margin-bottom: 15px;
 }
-
 
 .item-qty-price {
     display: flex; /* Use flexbox to align items horizontally */
@@ -175,8 +172,6 @@ aside figure {
     font-weight: bold;
 }
 
-
-
 .cart-total {
   margin-top: 10px;
   font-weight: bold;
@@ -192,3 +187,15 @@ aside figure {
   color: #008000; /* green */
   font-size: 1.2em;
 }
+
+
+
+
+
+
+
+
+
+
+
+
