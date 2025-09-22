@@ -378,7 +378,7 @@ dialog[open] {
 
 
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 385px) {
   body {
     display: flex;
     flex-direction: column;
