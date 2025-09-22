@@ -1,5 +1,28 @@
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/RedHatText-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/RedHatText-SemiBold.ttf') format('truetype');
+  font-weight: 600; /* semi-bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('./assets/fonts/RedHatText-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 body {
   background-color: hsl(20, 50%, 98%);
+  font-family: 'Red Hat Text';
   margin-left: 50px;
 }
 
@@ -93,9 +116,13 @@ section .text {
   color: hsl(12, 20%, 44%);
 }
 
+.menu-item-name {
+  font-weight: 600;
+}
 
 .menu-item-price {
   color: hsl(14, 86%, 42%);
+  font-weight: 600;
 }
 
 aside {
@@ -170,6 +197,7 @@ aside figure {
 .item-name {
   text-align: left;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .item-qty-price {
@@ -204,10 +232,12 @@ aside figure {
   display: flex;
   justify-content: space-between;
   /* pushes label left and amount right */
+  align-items: center;
 }
 
 .total-label {
   color: #444;
+  font-size: 12px;
 }
 
 .total-amount {
@@ -288,7 +318,7 @@ dialog {
 #dialog-div h2 {
   display: inline;
   margin: 10px 0 0;
-  font-size: 2.2em;
+  font-size: 2em;
 
 }
 
@@ -311,16 +341,19 @@ dialog {
 
 
 dialog {
-  display: none; /* hide until JS shows it */
+  display: none;
+  /* hide until JS shows it */
 }
 
 dialog[open] {
-  display: block; /* visible only when opened */
+  display: block;
+  /* visible only when opened */
 }
 
 
 #dialog-items .cart-item {
-  position: relative; /* needed for absolute positioning */
+  position: relative;
+  /* needed for absolute positioning */
 }
 
 /* Move subtotal to where the cancel button was */
@@ -336,4 +369,72 @@ dialog[open] {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.add-label {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+
+
+@media only screen and (max-width: 375px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+  header {
+    width: 80vw;
+    text-align: left;
+  }
+
+  section {
+    width: 80vw;
+    min-width: 80vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+
+  }
+
+  aside {
+    width: 80%;
+    position: static;
+    margin-bottom: 50px;
+    max-height: none;
+    overflow-y: visible;
+
+  }
+
+  dialog {
+    border: none;
+    border-radius: 15px;
+    height: 400px;
+    width: 100%;
+    position: fixed;
+    top: calc(100% - 400px);
+
+  }
+
+  #dialog-items {
+    width: 100%;
+  }
+
+
+  #closeBtn {
+    width: 100%;
+  }
+
+
+
 }
