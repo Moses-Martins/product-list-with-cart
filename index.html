@@ -15,10 +15,11 @@
         <h1>Desserts</h1>
     </header>
     <section>
-        <div class="product" data-id="1" data-name="Waffle with Berries" data-price="6.50">
+        <div class="product" data-id="1" data-name="Waffle with Berries" data-price="6.50" data-image="./assets/images/image-waffle-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-waffle-desktop.jpg" alt="Product One">
-                <figcaption id="product-add-1" class="caption" data-id="1" data-name="Waffle with Berries" data-price="6.50">
+                <figcaption id="product-add-1" class="caption" data-id="1" data-name="Waffle with Berries"
+                    data-price="6.50">
                     <span class="add-label">Add to cart</span>
                     <div class="quantity-selector" style="display: none;">
                         <button class="minus">–</button>
@@ -34,11 +35,11 @@
             </div>
 
         </div>
-        <div class="product" data-id="2" data-name="Vanilla Bean Crème Brûlée" data-price="7.00">
+        <div class="product" data-id="2" data-name="Vanilla Bean Crème Brûlée" data-price="7.00" data-image="./assets/images/image-creme-brulee-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-creme-brulee-desktop.jpg" alt="Product Two">
                 <figcaption id="product-add-2" class="caption">
-                   <span class="add-label">Add to cart</span>
+                    <span class="add-label">Add to cart</span>
                     <div class="quantity-selector" style="display: none;">
                         <button class="minus">–</button>
                         <span class="number">0</span>
@@ -53,7 +54,7 @@
             </div>
 
         </div>
-        <div class="product" data-id="3" data-name="Macaron Mix of Five" data-price="8.00">
+        <div class="product" data-id="3" data-name="Macaron Mix of Five" data-price="8.00" data-image="./assets/images/image-macaron-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-macaron-desktop.jpg" alt="Product Three">
                 <figcaption id="product-add-3" class="caption">
@@ -72,11 +73,11 @@
             </div>
 
         </div>
-        <div class="product" data-id="4" data-name="Classic Tiramisu" data-price="5.50">
+        <div class="product" data-id="4" data-name="Classic Tiramisu" data-price="5.50" data-image="./assets/images/image-tiramisu-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-tiramisu-desktop.jpg" alt="Product Four">
                 <figcaption id="product-add-4" class="caption">
-                   <span class="add-label">Add to cart</span>
+                    <span class="add-label">Add to cart</span>
                     <div class="quantity-selector" style="display: none;">
                         <button class="minus">–</button>
                         <span class="number">0</span>
@@ -91,11 +92,11 @@
             </div>
 
         </div>
-        <div class="product" data-id="5" data-name="Pistachio Baklava" data-price="4.00">
+        <div class="product" data-id="5" data-name="Pistachio Baklava" data-price="4.00" data-image="./assets/images/image-baklava-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-baklava-desktop.jpg" alt="Product Five">
                 <figcaption id="product-add-5" class="caption">
-                   <span class="add-label">Add to cart</span>
+                    <span class="add-label">Add to cart</span>
                     <div class="quantity-selector" style="display: none;">
                         <button class="minus">–</button>
                         <span class="number">0</span>
@@ -110,7 +111,7 @@
             </div>
 
         </div>
-        <div class="product" data-id="6" data-name="Lemon Meringue Pie" data-price="5.00">
+        <div class="product" data-id="6" data-name="Lemon Meringue Pie" data-price="5.00" data-image="./assets/images/image-meringue-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-meringue-desktop.jpg" alt="Product Six">
                 <figcaption id="product-add-6" class="caption">
@@ -129,7 +130,7 @@
             </div>
 
         </div>
-        <div class="product" data-id="7" data-name="Red Velvet Cake" data-price="4.50">
+        <div class="product" data-id="7" data-name="Red Velvet Cake" data-price="4.50" data-image="./assets/images/image-cake-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-cake-desktop.jpg" alt="Product Seven">
                 <figcaption id="product-add-7" class="caption">
@@ -148,7 +149,7 @@
             </div>
 
         </div>
-        <div class="product" data-id="8" data-name="Salted Caramel Brownie" data-price="4.50">
+        <div class="product" data-id="8" data-name="Salted Caramel Brownie" data-price="4.50" data-image="./assets/images/image-brownie-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-brownie-desktop.jpg" alt="Product Eight">
                 <figcaption id="product-add-8" class="caption">
@@ -167,7 +168,7 @@
             </div>
 
         </div>
-        <div class="product" data-id="9" data-name="Vanilla Panna Cotta" data-price="6.50">
+        <div class="product" data-id="9" data-name="Vanilla Panna Cotta" data-price="6.50" data-image="./assets/images/image-panna-cotta-desktop.jpg">
             <figure>
                 <img class="product-image" src="./assets/images/image-panna-cotta-desktop.jpg" alt="Product Nine">
                 <figcaption id="product-add-9" class="caption">
@@ -195,6 +196,20 @@
             </figcaption>
         </figure>
     </aside>
+    <dialog id="myDialog">
+        <div id="dialog-div">
+            <img src="./assets/images/icon-order-confirmed.svg" alt="confirmed">
+            <h2>Order Confirmed</h2>
+            <p>We hope you enjoy your food!</p>
+        </div>
+        <div id="dialog-items">
+            <div>goat</div>
+           
+        </div>
+
+        <button id="closeBtn">Start New Order</button>
+    </dialog>
+
 
     <script src="./scripts.js"></script>
 

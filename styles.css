@@ -1,71 +1,78 @@
 body {
-    background-color: hsl(20, 50%, 98%);
-    margin-left: 50px;
+  background-color: hsl(20, 50%, 98%);
+  margin-left: 50px;
 }
 
 figure {
-    position: relative;
-    margin: auto 0
+  position: relative;
+  margin: auto 0
 }
 
 
 figcaption.caption {
-    width: 170px;
-    height: 40px;
-    position: absolute;
-    bottom: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    border: 1px solid black;
-    border-radius: 20px;
+  width: 170px;
+  height: 40px;
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 20px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center; /* ✅ vertical centering */
-    cursor: pointer;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* ✅ vertical centering */
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 
 figcaption.caption::before {
   content: url("./assets/images/icon-add-to-cart.svg");
   display: inline-block;
-  margin-right: 5px; /* Add space between icon and text */
+  margin-right: 5px;
+  /* Add space between icon and text */
   margin-top: 5px;
 }
 
 figcaption.caption.active::before {
-  content: none; /* removes the icon once active */
+  content: none;
+  /* removes the icon once active */
 }
 
 
 
 .product-image {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
 
 }
 
 .product-image.selected {
-    border: 2px solid #d65123;
-    border-radius: 8px; /* optional */
+  border: 2px solid #d65123;
+  border-radius: 8px;
+  /* optional */
 }
 
 section {
-    width: 69vw;
-    min-width: 920px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* two columns */
-    grid-template-rows: 1fr 1fr 1fr; /* two rows */
-    gap: 12px; /* spacing between items */
-    
+  width: 69vw;
+  min-width: 920px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* two columns */
+  grid-template-rows: 1fr 1fr 1fr;
+  /* two rows */
+  gap: 12px;
+  /* spacing between items */
+
 }
 
-section > div {
-    width: fit-content;
-  
+section>div {
+  width: fit-content;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -75,44 +82,49 @@ section > div {
 }
 
 section .text {
-    margin-top: 35px;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 35px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-item-category {
-    font-size: 14px;
-    color: hsl(12, 20%, 44%);
+  font-size: 14px;
+  color: hsl(12, 20%, 44%);
 }
 
 
 .menu-item-price {
-    color: hsl(14, 86%, 42%);
+  color: hsl(14, 86%, 42%);
 }
 
 aside {
   width: 240px;
-    position: fixed;
-    top: 50px;     /* distance from top of viewport */
-    right: 50px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: white;
+  position: fixed;
+  top: 50px;
+  /* distance from top of viewport */
+  right: 50px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  max-height: 75vh;
+  overflow-y: auto;
 }
 
 aside h1 {
-    color: hsl(14, 86%, 42%);
-    margin-top: 0px;
+  color: hsl(14, 86%, 42%);
+  margin-top: 0px;
 }
 
 aside figure {
-   text-align: center;
+  text-align: center;
 }
 
 .quantity-selector {
-  display: flex; /* Aligns children in a row */
-  align-items: center; /* Vertically centers items */
+  display: flex;
+  /* Aligns children in a row */
+  align-items: center;
+  /* Vertically centers items */
   justify-content: space-between;
   width: 168px;
   height: 38px;
@@ -128,18 +140,21 @@ aside figure {
 .quantity-selector .minus,
 .quantity-selector .plus {
   border: none;
-  background: none;   /* Transparent background */
+  background: none;
+  /* Transparent background */
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  display: flex;      /* Center the symbol inside */
+  display: flex;
+  /* Center the symbol inside */
   align-items: center;
   justify-content: center;
 }
 
 .quantity-selector .minus:hover,
 .quantity-selector .plus:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Subtle hover effect */
 }
 
 .quantity-selector .number {
@@ -158,30 +173,37 @@ aside figure {
 }
 
 .item-qty-price {
-    display: flex; /* Use flexbox to align items horizontally */
-    align-items: center; /* Center them vertically */
-    gap: 12px; /* Add space between the quantity, price, and subtotal */
+  display: flex;
+  /* Use flexbox to align items horizontally */
+  align-items: center;
+  /* Center them vertically */
+  gap: 12px;
+  /* Add space between the quantity, price, and subtotal */
 }
 
 .item-qty {
-    color: #c44f36; /* Your accent color for the quantity */
-    font-weight: bold; /* Keep it bold */
+  color: #c44f36;
+  /* Your accent color for the quantity */
+  font-weight: bold;
+  /* Keep it bold */
 }
 
 .item-price {
-    color: #8c8c8c; /* Your secondary color for the price and subtotal */
+  color: #8c8c8c;
+  /* Your secondary color for the price and subtotal */
 }
 
 .item-subtotal {
-    color: hsl(12, 20%, 44%); 
-    font-weight: bold;
+  color: hsl(12, 20%, 44%);
+  font-weight: bold;
 }
 
 .cart-total {
   margin-top: 10px;
   font-weight: bold;
   display: flex;
-  justify-content: space-between; /* pushes label left and amount right */
+  justify-content: space-between;
+  /* pushes label left and amount right */
 }
 
 .total-label {
@@ -189,7 +211,8 @@ aside figure {
 }
 
 .total-amount {
-  color: #008000; /* green */
+  color: #008000;
+  /* green */
   font-size: 1.2em;
 }
 
@@ -217,4 +240,100 @@ aside figure {
   margin-top: 20px;
   border: none;
   border-radius: 20px;
+}
+
+
+
+dialog {
+  border: none;
+  border-radius: 5px;
+  width: 350px;
+  max-height: 400px;
+  display: flex;
+  /* Enable Flexbox */
+  flex-direction: column;
+  /* Stack children vertically */
+  align-items: center;
+  /* Center children horizontally */
+  justify-content: center;
+  /* Center children vertically */
+}
+
+#dialog-div {
+  border: none;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+#dialog-items {
+  box-sizing: border-box;
+  width: 350px;
+  margin: 10px auto 20px;
+  background-color: hsl(20, 50%, 98%);
+  border-radius: 5px;
+  max-height: 230px;
+  overflow-y: auto;
+  padding: 5px 10px;
+
+}
+
+#dialog-div img {
+  width: 30px;
+  height: auto;
+}
+
+#dialog-div h2 {
+  display: inline;
+  margin: 10px 0 0;
+  font-size: 2.2em;
+
+}
+
+#dialog-div p {
+  display: inline;
+  margin: 0;
+  padding: 0;
+
+}
+
+#closeBtn {
+  width: 350px;
+  height: 40px;
+  background-color: #d65123;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+
+dialog {
+  display: none; /* hide until JS shows it */
+}
+
+dialog[open] {
+  display: block; /* visible only when opened */
+}
+
+
+#dialog-items .cart-item {
+  position: relative; /* needed for absolute positioning */
+}
+
+/* Move subtotal to where the cancel button was */
+#dialog-items .item-subtotal {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dialog-product-image {
+  width: 50px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
